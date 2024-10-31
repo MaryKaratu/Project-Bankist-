@@ -61,7 +61,24 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-const displayMovements = function (movement) {};
+const displayMovements = function (movements) {
+  containerMovements.innerHTML = '';
+
+  movements.forEach(function (move, i) {
+    const type = move < 0 ? 'deposit' : 'withdrawal';
+
+    const html = ` 
+    <div class="movements__row">
+      <div class="movements__type 
+       movements__type--${type}">${i + 1}${type}</div>
+      <div class="movements__value">${move}</div>
+    </div>
+    `;
+    containerMovements.insertAdjacentHTML('afterbegin', html);
+  });
+};
+displayMovements(account1.movements);
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -134,14 +151,14 @@ const displayMovements = function (movement) {};
 //   }
 // }
 
-console.log('-----forEach Method-----');
-movements.forEach(function (move, i, arr) {
-  if (move > 0) {
-    console.log(`Movement ${i + 1}: You deposited ${move}`);
-  } else {
-    console.log(`Movement ${i + 1}: You made a withdrawal ${Math.abs(move)}`);
-  }
-});
+// console.log('-----forEach Method-----');
+// movements.forEach(function (move, i, arr) {
+//   if (move > 0) {
+//     console.log(`Movement ${i + 1}: You deposited ${move}`);
+//   } else {
+//     console.log(`Movement ${i + 1}: You made a withdrawal ${Math.abs(move)}`);
+//   }
+// });
 //0: function(200)
 //1: function(450)
 //2: function(400)
@@ -151,19 +168,72 @@ movements.forEach(function (move, i, arr) {
 //FOREAcH WITH MAPS AND SETS
 
 //Maps
-const currencies = new Map([
-  ['USD', 'United States dollar'],
-  ['EUR', 'Euro'],
-  ['GBP', 'Pound sterling'],
-]);
+// const currencies = new Map([
+//   ['USD', 'United States dollar'],
+//   ['EUR', 'Euro'],
+//   ['GBP', 'Pound sterling'],
+// ]);
 
-currencies.forEach(function (value, key, map) {
-  console.log(`${key}: ${value}`);
-});
+// currencies.forEach(function (value, key, map) {
+//   console.log(`${key}: ${value}`);
+// });
 
-//Sets
-const currenciesUnique = new Set(['USD', 'GBP', 'USD', 'EUR', 'EUR']);
-console.log(currenciesUnique);
-currenciesUnique.forEach(function (value, _, map) {
-  console.log(`${value}: ${value}`);
-});
+// //Sets
+// const currenciesUnique = new Set(['USD', 'GBP', 'USD', 'EUR', 'EUR']);
+// console.log(currenciesUnique);
+// currenciesUnique.forEach(function (value, _, map) {
+//   console.log(`${value}: ${value}`);
+// });
+
+//Challenge 1
+
+// const checkDogs = function (dogsJulia, dogskate) {
+//   const dogsJuliaCopy = dogsJulia.slice();
+//   dogsJuliaCopy.splice(0, 1);
+//   dogsJuliaCopy.splice(-2);
+//   console.log(dogsJuliaCopy);
+//   const juliaKateDogs = dogsJuliaCopy.concat(dogskate);
+//   console.log(juliaKateDogs);
+
+//   juliaKateDogs.forEach(function (age, i) {
+//     if (age >= 3) {
+//       console.log(`Dog number ${i + 1} is an adult, and is ${age} years old`);
+//     } else {
+//       console.log(`Dog number ${i + 1} is still a puppy`);
+//     }
+//   });
+// };
+// checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
+// checkDogs([9, 16, 6, 8, 3], [10, 5, 6, 1, 4]);
+
+/////////////////////////
+//DATA TRANSFORMATION MAP, FILTER AND REDUCE
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+// //MAP METHOD
+// const eurToUsd = 1.1;
+
+// // const movementsUsd = movements.map(function (mov) {
+// //   return mov * eurToUsd;
+// // });
+
+// const movementsUsd = movements.map(mov => mov * eurToUsd);
+
+// console.log(movements);
+// console.log(movementsUsd);
+
+// const movementsUsdFor = [];
+// for (const mov of movements) {
+//   let move2 = mov * eurToUsd;
+//   movementsUsdFor.push(move2);
+//   //movementUsdfor.push(mov * euroToUsd)
+// }
+// console.log(movementsUsd);
+
+// const movementsDescriptions = movements.map(
+//   (mov, i) =>
+//     `Movement ${i + 1}: You ${mov > 0 ? 'deposited' : 'withdrew'} ${Math.abs(
+//       mov
+//     )}`
+// );
+// console.log(movementsDescriptions);
